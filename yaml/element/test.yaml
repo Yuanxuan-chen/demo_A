@@ -1,20 +1,41 @@
+# 抽屉网的登录定位数据
 testinfo:
       - id: test_login001
         title: 登录测试
         info: 打开抽屉首页
 
 testcase:
-      - element_info: login_btn
-        find_type: ID
+      - element_info: l-login
+        index: 0
+        find_type: CLASS_NAME
         operate_type: click
-        info: 打开登录对话框
+        info: 打开登录页面
 
-      - element_info: /html/body/div[4]/div/div[3]/div[1]/div[2]/input
-        find_type: Xpath
+      - element_info: ptlogin_iframe
+        index: 1
+        find_type: ID
+        info: 切换表单
+
+      - element_info: 帐号密码登录
+        index: 2
+        find_type: LINK_TEXT
+        operate_type: click
+        info: 切换登录方式
+
+      - element_info: u
+        index: 3
+        find_type: ID
         operate_type: input
-        info: 输入手机号码
+        info: 输入账号
 
-      - element_info: /html/body/div[4]/div/div[4]/div[1]/div/input[1]
-        find_type: Xpath
+      - element_info: p
+        index: 4
+        find_type: ID
         operate_type: input
         info: 输入密码
+
+      - element_info: login_button
+        index: 5
+        find_type: ID
+        operate_type: input
+        info: 登录按钮

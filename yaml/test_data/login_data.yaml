@@ -1,14 +1,20 @@
+# 抽屉网的登录数据
 -
-  id: test_login001.1
-  detail : 手机号和密码为空登录
+  index: 0
+  detail : 账号和密码为空登录
   screenshot : phone_pawd_empty
   data:
-    phone: 123344
-    password: 232332
+    id : 123
+    pwd : 123
   check :
      - 手机号不能为空
 -
-  id: test-2
+  index: 1
   data:
-    phone: 54321
-    password: 43423
+    id: 54321
+    pwd: 43423
+-
+  index: 2
+  data:
+    id: 666
+    pwd: 777

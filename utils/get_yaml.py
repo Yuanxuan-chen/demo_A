@@ -7,6 +7,9 @@ import yaml
 
 
 class GetYaml:
+    """
+    yaml数据引用类
+    """
     def __init__(self, file_path):
         self.path = file_path
         self.data = self.get_data()
@@ -37,6 +40,7 @@ class GetYaml:
         读取yaml文件数据，
         :return: 返回数据
         """
+        return self.data
 
     def case_len(self):
         """

@@ -35,8 +35,13 @@ class BasePage:
         """
         self.driver.get(self.base_url)
 
-    def close(self):
-        sleep(2)
+    def close(self, sleep_time = 2):
+        """
+        关闭浏览器
+        :param sleep_time: 等待时间，默认2秒
+        :return:
+        """
+        sleep(sleep_time)
         self.driver.quit()
 
     def find_element(self, loc):
@@ -49,8 +54,7 @@ class BasePage:
             # 隐式等待
             #   self.driver.implicitly_wait(10)
             # 显示等待
-            WebDriverWait(self.driver, self.timeout).until(
-                EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except:
             logging.error("{}未能找到元属{}".format(self, loc))
@@ -59,8 +63,7 @@ class BasePage:
 
         try:
             # 显示等到
-            WebDriverWait(self.driver, self.timeout).until(
-                EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except:
             logging.error("{}未能找到元素{}".format(self, loc))
@@ -99,11 +102,11 @@ class BasePage:
 
     def switch_frame(self, loc):
         """
-        多表单嵌套切换, 没什么用
+        多表单嵌套切换
         :return:
         """
         try:
-            return self.driver.switch_to_frame(loc)
+            return self.driver.switch_to.frame(loc)
         except NoSuchFrameException as msg:
             logging.error("查找iframe异常-> {0}".format(msg))
 

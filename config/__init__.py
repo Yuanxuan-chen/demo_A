@@ -26,6 +26,4 @@ URL_chouti = 'https://dig.chouti.com'
 URL_baidu = "https://www.baidu.com"
 URL_tencent = 'https://www.qq.com/'
 # url选择器
-URL = URL_chouti
-
-print(TEST_REPORT_PATH)
+URL = URL_tencent

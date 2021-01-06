@@ -3,43 +3,36 @@
 # @Author  : Yuanxuan
 # @FileName: test_base_page.py
 # @Software: PyCharm
-import unittest
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 
 from pages import BasePage
+from utils import MyPyTest
+import config
 
 
-class TestBasePage(unittest.TestCase):
+class TestBasePage(MyPyTest):
     """
     基础类测试集
     """
 
-    driver = webdriver.Chrome()
-    url = "https://www.baidu.com"
-    URL = "https://dig.chouti.com"
+    # driver = webdriver.Chrome()
+    # URL = "https://www.baidu.com"
+    # URL = "https://dig.chouti.com"
+    URL = "https://www.126.com/"
 
-    @classmethod
-    def setUpClass(cls) -> None:
+    def setup(self):
         """
         选择浏览器
         :return:
         """
-        cls.bp = BasePage(cls.driver, cls.URL)
-        cls.bp.open()
-
-    @classmethod
-    def tearDownClass(cls) -> None:
-        """
-        关闭浏览器
-        :return:
-        """
-        sleep(1)
-        cls.driver.quit()
+        self.bp = BasePage(self.driver, config.URL_tencent)
+        self.bp.open()
 
     def test_find_element(self):
-        self.bp.find_element((By.ID, '666')).send_keys("sddd")
+        self.bp.find_element((By.ID, 'kw')).send_keys("sddd")
         sleep(1)
         self.bp.find_element((By.ID, 'su')).click()
         sleep(1)
@@ -102,6 +95,19 @@ class TestBasePage(unittest.TestCase):
         self.driver.switch_to.window(all_windows[0])
         sleep(2)
 
+    def test_switch_frame(self):
+        """
+        测试切换表单
+        :return:
+        """
+        login_frame = self.driver.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
+        self.bp.switch_frame(login_frame)
+        self.bp.find_element((By.NAME, "email")).send_keys("username")
+        # self.driver.find_element_by_name("email").send_keys("username")
+        # self.driver.find_element_by_name("password").send_keys("password")
+        # self.driver.find_element_by_id("dologin").click()
+        # self.driver.switch_to.default_content()
+
 
 if __name__ == '__main__':
-    unittest.main()
+    pytest.main()

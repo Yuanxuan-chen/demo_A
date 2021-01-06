@@ -4,7 +4,7 @@
 # @FileName: __init__.py.py
 # @Software: PyCharm
 from .get_yaml import GetYaml
-from .my_unittest import MyUnitTest
+from .my_pytest import MyPyTest
 
 # htmlTestRunner
 from .html_test_report import HTMLTestRunner

@@ -2,3 +2,4 @@ anthor
 .idea
 debug.log
 report_file
+.pytest_cache

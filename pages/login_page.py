@@ -24,7 +24,14 @@ class LoginPage(BasePage):
         首页登录，弹出登录框
         :return:
         """
-        dig_login_button_loc = (By.ID, self.elements.get_element_info(0))
+        # 点击首页登录按钮
+        dig_login_button_loc = (By.CLASS_NAME, self.elements.get_element_info(0))
+        self.find_element(dig_login_button_loc).click()
+        # 切换表单
+        dig_login_button_loc = (By.ID, self.elements.get_element_info(1))
+        self.switch_frame(self.find_element(dig_login_button_loc))
+        # 切换到账号密码登录方式
+        dig_login_button_loc = (By.LINK_TEXT, self.elements.get_element_info(2))
         self.find_element(dig_login_button_loc).click()
 
     def login_phone(self, phone_number):
@@ -33,7 +40,7 @@ class LoginPage(BasePage):
         :param phone_number:
         :return:
         """
-        login_phone_loc = (By.XPATH, self.elements.get_element_info(1))
+        login_phone_loc = (By.ID, self.elements.get_element_info(3))
         self.send_key(login_phone_loc, phone_number)
 
     def login_password(self, pwd):
@@ -41,7 +48,7 @@ class LoginPage(BasePage):
         登录密码
         :return:pwd
         """
-        login_pwd_loc = (By.XPATH, self.elements.get_element_info(2))
+        login_pwd_loc = (By.ID, self.elements.get_element_info(4))
         self.send_key(login_pwd_loc, pwd)
 
     def keep_login(self):
@@ -55,6 +62,8 @@ class LoginPage(BasePage):
         登录按钮
         :return:
         """
+        login_loc = (By.ID, self.elements.get_element_info(5))
+        self.find_element(login_loc).click()
 
     def login_exit(self):
         """
