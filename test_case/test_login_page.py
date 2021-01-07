@@ -19,7 +19,7 @@ class TestLoginPage(MyPyTest):
     抽屉登录测试类
     """
     def setup(self):
-        self.lp = LoginPage(self.driver, config.URL_tencent)
+        self.lp = LoginPage(self.driver, config.URL)
         self.lp.open()
 
     @pytest.mark.parametrize("data", test_case_data.all_data())

@@ -25,5 +25,6 @@ TEST_CASE_PATH = os.path.join(BASE_DIR_PATH, "test_case")
 URL_chouti = 'https://dig.chouti.com'
 URL_baidu = "https://www.baidu.com"
 URL_tencent = 'https://www.qq.com/'
+URL_126 = 'https://www.126.com/'
 # url选择器
 URL = URL_tencent

@@ -117,7 +117,7 @@ class BasePage:
         :return:
         """
         try:
-            return self.driver.switch_to_window(loc)
+            return self.driver.switch_to.window(loc)
         except NoSuchWindowException as msg:
             logging.error("查找窗口句柄handle异常-> {0}".format(msg))
 
@@ -127,6 +127,28 @@ class BasePage:
         :return:
         """
         try:
-            return self.driver.switch_to_alert()
+            return self.driver.switch_to.alert()
         except NoAlertPresentException as msg:
             logging.error("查找alert弹出框异常-> {0}".format(msg))
+
+    def get_title(self):
+        """
+        获取标题
+        :return: 标题信息
+        """
+        return self.driver.title
+
+    def get_current_url(self):
+        """
+        获取当前页面url
+        :return:
+        """
+        return self.driver.current_url
+
+    def get_loc_text(self, loc):
+        """
+        获取当前定位loc的文本性质
+        :param loc:
+        :return:
+        """
+        return loc.text
