@@ -5,11 +5,14 @@
 # @Software: PyCharm
 
 import pytest
-from utils import MyPyTest
+import logging
+from selenium.webdriver.common.by import By
 
 import config
 from pages import LoginPage
 from utils import GetYaml
+from utils import MyPyTest
+import pytest_html
 
 test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
 
@@ -29,10 +32,11 @@ class TestLoginPage(MyPyTest):
         :return:
         """
         self.lp.dig_login()
-        self.lp.login_phone(data['data']['id'])
+        self.lp.login_username(data['data']['id'])
         self.lp.login_password(data['data']['pwd'])
         self.lp.login_button()
+        assert self.lp.login_check_info() == data['check']
 
 
 if __name__ == '__main__':
-    pytest.main()
+    pytest.main("--html=report.html")

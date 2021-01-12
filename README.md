@@ -2,8 +2,8 @@
 * python 3.7
 * selenium 3
 * pytest
-* jinja2
-* pyyaml
+* yaml
+* 测试报告
 
 ### 文件介绍
 * config 公用配置
@@ -14,4 +14,9 @@
 * yaml 数据存放
     * element 页面元素定位数据
     * test_data 测试用例数据
+  
+### 待完善
+* 测试报告
+* 邮件发送
+* 测试集打包
   

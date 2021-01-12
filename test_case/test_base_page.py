@@ -7,6 +7,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
+import logging
 
 from pages import BasePage
 from utils import MyPyTest
@@ -17,12 +18,6 @@ class TestBasePage(MyPyTest):
     """
     基础类测试集
     """
-
-    # driver = webdriver.Chrome()
-    # URL = "https://www.baidu.com"
-    # URL = "https://dig.chouti.com"
-    URL = "https://www.126.com/"
-
     def setup(self):
         """
         选择浏览器
@@ -107,6 +102,12 @@ class TestBasePage(MyPyTest):
         # self.driver.find_element_by_name("password").send_keys("password")
         # self.driver.find_element_by_id("dologin").click()
         # self.driver.switch_to.default_content()
+
+    def test_check(self):
+        logging.info(self.bp.get_title())
+        logging.info(self.bp.get_current_url())
+        loc = self.bp.find_element((By.XPATH, '/html/body/div[1]/div[5]/div[2]/div[1]/div[2]/ul/li[2]/a[2]'))
+        logging.info(self.bp.get_loc_text(loc))
 
 
 if __name__ == '__main__':

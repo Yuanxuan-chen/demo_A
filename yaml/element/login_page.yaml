@@ -39,3 +39,9 @@ testcase:
         find_type: ID
         operate_type: input
         info: 登录按钮
+
+      - element_info: err_m
+        index: 6
+        find_type: ID
+        operate_type: input
+        info: 登录提示信息

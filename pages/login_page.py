@@ -17,7 +17,7 @@ class LoginPage(BasePage):
     """
     def __init__(self, driver, url):
         super().__init__(driver, url)
-        self.elements = GetYaml(config.ELEMENT_PATH + '\\' + 'test.yaml')
+        self.elements = GetYaml(config.ELEMENT_PATH + '\\' + 'login_page.yaml')
 
     def dig_login(self):
         """
@@ -34,14 +34,14 @@ class LoginPage(BasePage):
         dig_login_button_loc = (By.LINK_TEXT, self.elements.get_element_info(2))
         self.find_element(dig_login_button_loc).click()
 
-    def login_phone(self, phone_number):
+    def login_username(self, username):
         """
-        登录手机号
-        :param phone_number:
+        登录账号
+        :param username:
         :return:
         """
         login_phone_loc = (By.ID, self.elements.get_element_info(3))
-        self.send_key(login_phone_loc, phone_number)
+        self.send_key(login_phone_loc, username)
 
     def login_password(self, pwd):
         """
@@ -51,12 +51,6 @@ class LoginPage(BasePage):
         login_pwd_loc = (By.ID, self.elements.get_element_info(4))
         self.send_key(login_pwd_loc, pwd)
 
-    def keep_login(self):
-        """
-        单选自动登录
-        :return:
-        """
-
     def login_button(self):
         """
         登录按钮
@@ -65,32 +59,11 @@ class LoginPage(BasePage):
         login_loc = (By.ID, self.elements.get_element_info(5))
         self.find_element(login_loc).click()
 
-    def login_exit(self):
+    def login_check_info(self):
         """
-        退出登录
+        获取断言需要的信息
         :return:
         """
-
-    def user_login(self):
-        """
-        登录入口
-        :return:
-        """
-
-    def phone_pwd_error_hint(self):
-        """
-        手机号或密码错误
-        :return:
-        """
-
-    def user_login_success_hint(self):
-        """
-        用户登录成功
-        :return:
-        """
-
-    def exit_login_success_hint(self):
-        """
-        退出登录
-        :return:
-        """
+        # 提示完文字的loc
+        check_loc = self.find_element((By.ID, self.elements.get_element_info(6)))
+        return self.get_loc_text(check_loc)
