@@ -3,3 +3,4 @@ anthor
 .log
 report_file
 .pytest_cache
+__pycache__

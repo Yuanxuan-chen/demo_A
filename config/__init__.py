@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/12/25 下午 02:35
 # @Author  : Yuanxuan
-# @FileName: __init__.py.py
+# @FileName: run_start.py.py
 # @Software: PyCharm
 import os
+import time
 """
 笔记
 os.getcwd() 获取当前文件的路径
@@ -17,7 +18,9 @@ ELEMENT_PATH = os.path.join(BASE_DIR_PATH, "yaml", "element")
 # 测试数据
 TEST_DATA_PATH = os.path.join(BASE_DIR_PATH, "yaml", "test_data")
 # 测试报告
-TEST_REPORT_PATH = os.path.join(BASE_DIR_PATH, "report", "report_file")
+now_time = time.strftime("%Y-%m-%d_%H_%M_%S")
+RAW_REPORT_PATH = os.path.join(BASE_DIR_PATH, "report", "raw_file")  # 未解码
+TEST_REPORT_PATH = os.path.join(BASE_DIR_PATH, "report", "report_file", now_time)
 # 测试用例
 TEST_CASE_PATH = os.path.join(BASE_DIR_PATH, "test_case")
 
@@ -28,3 +31,5 @@ URL_tencent = 'https://www.qq.com/'
 URL_126 = 'https://www.126.com/'
 # url选择器
 URL = URL_tencent
+
+print(TEST_REPORT_PATH)

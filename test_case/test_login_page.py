@@ -5,6 +5,8 @@
 # @Software: PyCharm
 
 import pytest
+import allure
+import os
 
 import config
 from pages import LoginPage
@@ -14,6 +16,7 @@ from utils import MyPyTest
 test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
 
 
+@allure.feature('登录页功能')
 class TestLoginPage(MyPyTest):
     """
     腾讯登录测试类
@@ -22,13 +25,16 @@ class TestLoginPage(MyPyTest):
         self.lp = LoginPage(self.driver, config.URL)
         self.lp.open()
 
+    @allure.story("测试登录功能")
     @pytest.mark.parametrize("data", test_case_data.all_data())
     def test_login_window(self, data):
         """
         测试腾讯网的账号密码的跳转
         :return:
         """
-        self.lp.dig_login()
+        with allure.step("1. 跳转到测试登录页面"):
+            self.lp.dig_login()
+
         self.lp.login_username(data['data']['id'])
         self.lp.login_password(data['data']['pwd'])
         # 注释掉，防止被腾讯官方认为是攻击行为
