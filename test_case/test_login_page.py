@@ -5,21 +5,18 @@
 # @Software: PyCharm
 
 import pytest
-import logging
-from selenium.webdriver.common.by import By
 
 import config
 from pages import LoginPage
 from utils import GetYaml
 from utils import MyPyTest
-import pytest_html
 
 test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
 
 
 class TestLoginPage(MyPyTest):
     """
-    抽屉登录测试类
+    腾讯登录测试类
     """
     def setup(self):
         self.lp = LoginPage(self.driver, config.URL)
@@ -34,9 +31,10 @@ class TestLoginPage(MyPyTest):
         self.lp.dig_login()
         self.lp.login_username(data['data']['id'])
         self.lp.login_password(data['data']['pwd'])
-        self.lp.login_button()
-        assert self.lp.login_check_info() == data['check']
+        # 注释掉，防止被腾讯官方认为是攻击行为
+        # self.lp.login_button()
+        # assert self.lp.login_check_info() == data['check']
 
 
 if __name__ == '__main__':
-    pytest.main("--html=report.html")
+    pytest.main()

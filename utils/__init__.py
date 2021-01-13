@@ -5,8 +5,3 @@
 # @Software: PyCharm
 from .get_yaml import GetYaml
 from .my_pytest import MyPyTest
-
-# htmlTestRunner
-from .html_test_report import HTMLTestRunner
-# e-mail
-from .html_test_report import SMTP

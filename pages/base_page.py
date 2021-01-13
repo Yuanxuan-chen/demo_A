@@ -4,19 +4,11 @@
 # @FileName: base_page.py
 # @Software: PyCharm
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchFrameException, NoSuchWindowException, NoAlertPresentException, NoSuchElementException
+from selenium.common.exceptions import NoSuchFrameException, NoSuchWindowException, NoAlertPresentException
 import logging
 from time import sleep
-
-S = """
-        多个元素定位
-        :param loc: 定位元素方法
-        :return: 元素地址集
-        """
 
 
 class BasePage:
