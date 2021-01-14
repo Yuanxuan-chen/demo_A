@@ -1,6 +1,7 @@
 anthor
 .idea
 .log
+raw_file
 report_file
 .pytest_cache
 __pycache__

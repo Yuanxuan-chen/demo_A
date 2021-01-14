@@ -35,6 +35,13 @@ class GetYaml:
         """
         return self.data['testcase'][index]['element_info']
 
+    def get_all_detail(self):
+        """
+        获取所有的detail信息
+        :return:
+        """
+        return [d['detail'] for d in self.data]
+
     def all_data(self):
         """
         读取yaml文件数据，
@@ -42,28 +49,7 @@ class GetYaml:
         """
         return self.data
 
-    def case_len(self):
-        """
-        测试数据字典长度
-        :return:
-        """
-
-    def check_len(self):
-        """
-        check字典长度
-        :return:
-        """
-
-    def get_find_type(self, i):
-        """
-
-        :param i:
-        :return:
-        """
-
-    def get_operate_type(self, i):
-        """
-
-        :param i:
-        :return:
-        """
+if __name__ == '__main__':
+    import config
+    test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
+    print(test_case_data.get_all_detail())
