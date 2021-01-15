@@ -4,7 +4,7 @@
 # @FileName: login_page.py
 # @Software: PyCharm
 from selenium.webdriver.common.by import By
-
+import allure
 
 from pages import BasePage
 from utils import GetYaml
@@ -19,6 +19,7 @@ class LoginPage(BasePage):
         super().__init__(driver, url)
         self.elements = GetYaml(config.ELEMENT_PATH + '\\' + 'login_page.yaml')
 
+    @allure.step("跳转到登录，进入账号密码登录页面")
     def dig_login(self):
         """
         首页登录，弹出登录框
@@ -34,6 +35,7 @@ class LoginPage(BasePage):
         dig_login_button_loc = (By.LINK_TEXT, self.elements.get_element_info(2))
         self.find_element(dig_login_button_loc).click()
 
+    @allure.step("输入账号")
     def login_username(self, username):
         """
         登录账号
@@ -43,6 +45,7 @@ class LoginPage(BasePage):
         login_phone_loc = (By.ID, self.elements.get_element_info(3))
         self.send_key(login_phone_loc, username)
 
+    @allure.step("输入密码")
     def login_password(self, pwd):
         """
         登录密码
@@ -51,6 +54,7 @@ class LoginPage(BasePage):
         login_pwd_loc = (By.ID, self.elements.get_element_info(4))
         self.send_key(login_pwd_loc, pwd)
 
+    @allure.step("点击登录按钮")
     def login_button(self):
         """
         登录按钮
@@ -59,6 +63,7 @@ class LoginPage(BasePage):
         login_loc = (By.ID, self.elements.get_element_info(5))
         self.find_element(login_loc).click()
 
+    @allure.step("校验验证信息是否正确")
     def login_check_info(self):
         """
         获取断言需要的信息

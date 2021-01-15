@@ -15,26 +15,29 @@ from utils import MyPyTest
 test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
 
 
-@allure.feature('腾讯网登录页功能测试')
+@allure.epic('test_case,登录页')
+@allure.feature('TestLoginPage,腾讯网登录页功能测试')
 class TestLoginPage(MyPyTest):
     """
     腾讯登录测试类
     """
+
+    @allure.step("打开浏览器，并进入:{}".format(config.URL))
     def setup(self):
         self.lp = LoginPage(self.driver, config.URL)
         self.lp.open()
 
     @allure.story("账号密码登录")
     @allure.severity(allure.severity_level.NORMAL)
-    @pytest.mark.parametrize("data", test_case_data.all_data(), ids=test_case_data.get_all_detail())
+    # @allure.title("{data['detail']}")
+    @pytest.mark.parametrize("data", test_case_data.all_data())
     def test_login_window(self, data):
         """
         测试腾讯网的账号密码的跳转
         """
-        with allure.step("1.跳转到测试登录页面"):
-            self.lp.dig_login()
+        self.lp.dig_login()
 
-        with allure.step("2.输入账号和密码，点击登录"):
+        with allure.step("输入账号和密码，点击登录"):
             self.lp.login_username(data['data']['id'])
             self.lp.login_password(data['data']['pwd'])
             # self.lp.login_button()

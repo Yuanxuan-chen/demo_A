@@ -31,5 +31,3 @@ URL_tencent = 'https://www.qq.com/'
 URL_126 = 'https://www.126.com/'
 # url选择器
 URL = URL_tencent
-
-print(TEST_REPORT_PATH)

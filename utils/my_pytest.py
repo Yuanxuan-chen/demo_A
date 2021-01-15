@@ -20,5 +20,5 @@ class MyPyTest:
 
     @classmethod
     def teardown_class(cls):
-        sleep(3)
+        # sleep(1)
         cls.driver.quit()
