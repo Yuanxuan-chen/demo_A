@@ -4,6 +4,7 @@
 # @FileName: my_pytest.py
 # @Software: PyCharm
 from selenium import webdriver
+import allure
 from time import sleep
 
 
@@ -15,10 +16,12 @@ class MyPyTest:
 
     @classmethod
     def setup_class(cls):
-        cls.driver = webdriver.Chrome()
-        cls.driver.maximize_window()
+        with allure.step("打开Chrome浏览器"):
+            cls.driver = webdriver.Chrome()
+            cls.driver.maximize_window()
 
     @classmethod
     def teardown_class(cls):
         # sleep(1)
-        cls.driver.quit()
+        with allure.step("关闭浏览器"):
+            cls.driver.quit()

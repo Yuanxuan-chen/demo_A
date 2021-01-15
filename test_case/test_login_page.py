@@ -21,11 +21,10 @@ class TestLoginPage(MyPyTest):
     """
     腾讯登录测试类
     """
-
-    @allure.step("打开浏览器，并进入:{}".format(config.URL))
     def setup(self):
-        self.lp = LoginPage(self.driver, config.URL)
-        self.lp.open()
+        with allure.step("进入{}".format(config.URL)):
+            self.lp = LoginPage(self.driver, config.URL)
+            self.lp.open()
 
     @allure.story("账号密码登录")
     @allure.severity(allure.severity_level.NORMAL)
