@@ -5,6 +5,7 @@
 # @Software: PyCharm
 import os
 import time
+
 """
 笔记
 os.getcwd() 获取当前文件的路径
@@ -31,3 +32,11 @@ URL_tencent = 'https://www.qq.com/'
 URL_126 = 'https://www.126.com/'
 # url选择器
 URL = URL_tencent
+
+
+def sleeping():
+    """
+    全局等待函数
+    """
+    t = 6
+    time.sleep(t)
