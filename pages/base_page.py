@@ -103,14 +103,17 @@ class BasePage:
         except NoSuchFrameException as msg:
             logging.error("查找iframe异常-> {0}".format(msg))
 
-    def switch_windows(self, loc):
+    def switch_windows(self):
         """
-        多窗口切换, 没什么用
+        多窗口切换
         :param loc:
         :return:
         """
         try:
-            return self.driver.switch_to.window(loc)
+            # 跳转窗口
+            all_windows = self.driver.window_handles
+            self.driver.close()
+            self.driver.switch_to.window(all_windows[1])
         except NoSuchWindowException as msg:
             logging.error("查找窗口句柄handle异常-> {0}".format(msg))
 
