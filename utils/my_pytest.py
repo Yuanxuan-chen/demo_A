@@ -5,7 +5,7 @@
 # @Software: PyCharm
 from selenium import webdriver
 import allure
-from time import sleep
+import config
 
 
 class MyPyTest:
@@ -22,6 +22,6 @@ class MyPyTest:
 
     @classmethod
     def teardown_class(cls):
-        # sleep(1)
+        config.sleeping()
         with allure.step("关闭浏览器"):
             cls.driver.quit()

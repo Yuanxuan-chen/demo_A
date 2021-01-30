@@ -4,7 +4,6 @@
 # @FileName: test_base_page.py
 # @Software: PyCharm
 import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 import logging
