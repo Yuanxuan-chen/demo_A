@@ -98,7 +98,8 @@ class BasePage:
         :return:
         """
         try:
-            return self.driver.switch_to.frame(loc)
+            frame_loc = self.find_element(loc)
+            return self.driver.switch_to.frame(frame_loc)
         except NoSuchFrameException as msg:
             logging.error("查找iframe异常-> {0}".format(msg))
 
