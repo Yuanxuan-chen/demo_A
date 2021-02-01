@@ -12,7 +12,7 @@ from pages import LoginPage
 from utils import GetYaml
 from utils import MyPyTest
 
-test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
+test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_page_data.yaml')
 
 
 @allure.epic('test_case,登录页')
@@ -28,7 +28,6 @@ class TestLoginPage(MyPyTest):
 
     @allure.story("账号密码登录")
     @allure.severity(allure.severity_level.NORMAL)
-    # @allure.title("{data['detail']}")
     @pytest.mark.parametrize("data", test_case_data.all_data())
     def test_login_window(self, data):
         """

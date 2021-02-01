@@ -30,12 +30,17 @@ class NewsPage(BasePage):
         self.switch_windows()
 
     @allure.step("随机选择新闻")
-    def switch_news(self):
+    def switch_news(self, index):
         """
         随机选择新闻
+
+        /html/body/div/div[4]/div[2]/div/div/ul[1]/li[1]/div/h3/a
+        /html/body/div/div[4]/div[2]/div/div/ul[1]/li[2]/div/h3/a[2]
+        /html/body/div/div[4]/div[2]/div/div/ul[2]/li[2]/div/h3/a
+        /html/body/div/div[4]/div[2]/div/div/ul[2]/li[15]/div/h3/a
         :return:
         """
-        switch_news_loc = (By.XPATH, '/html/body/div/div[4]/div[2]/div/div/ul[1]/li[1]/div/h3/a')
+        switch_news_loc = (By.XPATH, '/html/body/div/div[4]/div[2]/div/div/ul[1]/li[' + str(index) + ']/div/h3/a')
         self.find_element(switch_news_loc).click()
 
         # 跳转窗口
@@ -51,7 +56,7 @@ class NewsPage(BasePage):
         self.script(js_code)
 
     @allure.step("评论新闻")
-    def comment_news(self):
+    def comment_news(self, text):
         """
         评论新闻
         :return:
@@ -63,7 +68,6 @@ class NewsPage(BasePage):
 
         # 评论框输入数据
         input_loc = (By.ID, 'J_Textarea')
-        text = 'dasdsadas'
         self.send_key(input_loc, text)
 
         # 点击确定按钮
