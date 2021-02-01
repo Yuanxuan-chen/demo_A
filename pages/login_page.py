@@ -30,7 +30,7 @@ class LoginPage(BasePage):
         self.find_element(dig_login_button_loc).click()
         # 切换表单
         dig_login_button_loc = (By.ID, 'ptlogin_iframe')
-        self.switch_frame(self.find_element(dig_login_button_loc))
+        self.switch_frame(dig_login_button_loc)
         # 切换到账号密码登录方式
         dig_login_button_loc = (By.LINK_TEXT, '帐号密码登录')
         self.find_element(dig_login_button_loc).click()
