@@ -1,0 +1,26 @@
+# 新闻页测试数据
+-
+  detail: 浏览网页1
+  data:
+    index: 1
+    comment: 浏览网页1
+
+- detail: 浏览网页2
+  data:
+    index: 2
+    comment: 浏览网页2
+
+- detail: 浏览网页3
+  data:
+    index: 3
+    comment: 浏览网页3
+
+- detail: 浏览网页4
+  data:
+    index: 4
+    comment: 浏览网页4
+
+- detail: 浏览网页5
+  data:
+    index: 5
+    comment: 浏览网页5
