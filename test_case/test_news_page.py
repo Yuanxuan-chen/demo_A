@@ -10,6 +10,7 @@ from utils import GetYaml
 
 import pytest
 import allure
+import logging
 
 test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'news_page_data.yaml')
 
@@ -33,9 +34,13 @@ class TestNewsPage(MyPyTest):
         :return:
         """
         self.np.dig_news()
-        self.np.switch_news(data['data']['index'])
+        text = self.np.switch_news(data['data']['index'])
         self.np.move_news_page()
         self.np.comment_news(data['data']['comment'])
+
+        # logging.info(text)
+        # logging.warning(self.np.get_title()[:-5])
+        assert self.np.get_title()[:-5] == text
 
 
 if __name__ == '__main__':

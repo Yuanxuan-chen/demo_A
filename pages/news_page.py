@@ -32,7 +32,7 @@ class NewsPage(BasePage):
     @allure.step("随机选择新闻")
     def switch_news(self, index):
         """
-        随机选择新闻
+        选择新闻
 
         /html/body/div/div[4]/div[2]/div/div/ul[1]/li[1]/div/h3/a
         /html/body/div/div[4]/div[2]/div/div/ul[1]/li[2]/div/h3/a[2]
@@ -41,10 +41,15 @@ class NewsPage(BasePage):
         :return:
         """
         switch_news_loc = (By.XPATH, '/html/body/div/div[4]/div[2]/div/div/ul[1]/li[' + str(index) + ']/div/h3/a')
-        self.find_element(switch_news_loc).click()
+        loc = self.find_element(switch_news_loc)
+        text = self.get_loc_text(loc)
+        loc.click()
+        # self.find_element(switch_news_loc).click()
 
         # 跳转窗口
         self.switch_windows()
+
+        return text
 
     @allure.step("浏览新闻，移动到底部")
     def move_news_page(self):
