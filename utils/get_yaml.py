@@ -51,5 +51,5 @@ class GetYaml:
 
 if __name__ == '__main__':
     import config
-    test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_data.yaml')
+    test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_page_data.yaml')
     print(test_case_data.get_all_detail())
