@@ -7,6 +7,10 @@ from selenium import webdriver
 import allure
 import config
 
+options = webdriver.ChromeOptions()
+# 添加参数进行去除浏览器检测框: Chrome正在受到自动测试软件的控制
+options.add_experimental_option("excludeSwitches", ['enable-automation'])
+
 
 class MyPyTest:
     """
@@ -17,7 +21,7 @@ class MyPyTest:
     @classmethod
     def setup_class(cls):
         with allure.step("打开Chrome浏览器"):
-            cls.driver = webdriver.Chrome()
+            cls.driver = webdriver.Chrome(chrome_options=options)
             cls.driver.maximize_window()
 
     @classmethod
