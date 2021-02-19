@@ -10,6 +10,8 @@ import config
 options = webdriver.ChromeOptions()
 # 添加参数进行去除浏览器检测框: Chrome正在受到自动测试软件的控制
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
+# 设置为无页面启动
+options.headless = True
 
 
 class MyPyTest:
