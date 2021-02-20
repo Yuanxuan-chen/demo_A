@@ -38,5 +38,5 @@ def sleeping():
     """
     全局等待函数
     """
-    t = 6
+    t = 1
     time.sleep(t)
