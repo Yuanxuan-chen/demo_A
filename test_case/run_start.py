@@ -3,21 +3,21 @@
 # @Author  : Yuanxuan
 # @FileName: run_start.py.py
 # @Software: PyCharm
-import pytest
-import config
 import os
 import shutil
 
+import pytest
+
 if __name__ == '__main__':
-    #文件保存路径
+    # 文件保存路径
     raw = '../report/raw_file'
-    report = '../report/report_file/' # + config.now_time # 需要保存的时候就去掉注释，不然下次运行会覆盖旧数据
+    report = '../report/report_file/'  # + config.now_time # 需要保存的时候就去掉注释，不然下次运行会覆盖旧数据
 
     # 生成测试报告
     pytest.main(["test_login_page.py::TestLoginPage",
                  "test_news_page.py::TestNewsPage",
 
-    "--alluredir={}".format(raw), "--clean-alluredir" ])
+                 "--alluredir={}".format(raw), "--clean-alluredir"])
     # 将运行环境拷贝到测试报告中
     shutil.copy('../config/environment.properties', '{}/environment.properties'.format(raw))
 
