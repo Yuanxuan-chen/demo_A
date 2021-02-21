@@ -26,6 +26,13 @@ class TestLoginPage(MyPyTest):
             self.lp = LoginPage(self.driver, config.URL)
             self.lp.open()
 
+    def teardown(self):
+        """
+        后置动作
+        :return:
+        """
+        self.bp.sleeping()
+
     @allure.story("账号密码登录")
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.parametrize("data", test_case_data.all_data())

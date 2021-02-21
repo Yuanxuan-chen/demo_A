@@ -34,9 +34,11 @@ URL_126 = 'https://www.126.com/'
 URL = URL_tencent
 
 
-def sleeping():
+def sleeping(t=1):
     """
     全局等待函数
     """
-    t = 1
+    # 添加删除标记
+    import warnings
+    warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)
     time.sleep(t)

@@ -25,6 +25,14 @@ class TestBasePage(MyPyTest):
         self.bp = BasePage(self.driver, config.URL_tencent)
         self.bp.open()
 
+    def teardown(self):
+        """
+        后置动作
+        :return:
+        """
+        self.bp.sleeping()
+
+
     def test_find_element(self):
         self.bp.find_element((By.ID, 'kw')).send_keys("sddd")
         sleep(1)

@@ -33,6 +33,6 @@ class MyPyTest:
 
     @classmethod
     def teardown_class(cls):
-        config.sleeping()
+        # config.sleeping()
         with allure.step("关闭浏览器"):
             cls.driver.quit()

@@ -27,6 +27,13 @@ class TestNewsPage(MyPyTest):
             self.np = NewsPage(self.driver, config.URL)
             self.np.open()
 
+    def teardown(self):
+        """
+        后置动作
+        :return:
+        """
+        self.bp.sleeping()
+
     @pytest.mark.parametrize("data", test_case_data.all_data())
     def test_read_news(self, data):
         """

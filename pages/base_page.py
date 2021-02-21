@@ -158,3 +158,10 @@ class BasePage:
         """
         warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)
         return loc.text
+
+    @staticmethod
+    def sleeping(time=1):
+        """
+        强制等待函数
+        """
+        sleep(time)
