@@ -3,10 +3,12 @@
 # @Author  : Yuanxuan
 # @FileName: base_page.py
 # @Software: PyCharm
+import warnings
 
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchFrameException, NoSuchWindowException, NoAlertPresentException
+from selenium.webdriver.support import expected_conditions
+from selenium.common.exceptions import \
+    NoSuchFrameException, NoSuchWindowException, NoAlertPresentException, NoSuchElementException, TimeoutException
 import logging
 from time import sleep
 
@@ -15,24 +17,25 @@ class BasePage:
     """
     基础类
     """
-    def __init__(self, driver, url, parent=None):
+    def __init__(self, driver, url):
         self.driver = driver
         self.base_url = url
-        self.parent = parent
         self.timeout = 5
 
     def open(self):
         """
-        打开url，并最大化窗口
+        打开url
         """
         self.driver.get(self.base_url)
 
-    def close(self, sleep_time = 2):
+    def close(self, sleep_time=2):
         """
         关闭浏览器
         :param sleep_time: 等待时间，默认2秒
         :return:
         """
+        # 添加删除标记
+        warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)
         sleep(sleep_time)
         self.driver.quit()
 
@@ -46,18 +49,22 @@ class BasePage:
             # 隐式等待
             #   self.driver.implicitly_wait(10)
             # 显示等待
-            WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, self.timeout).until(expected_conditions.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
-        except:
+        except TimeoutException:
             logging.error("{}未能找到元属{}".format(self, loc))
 
     def find_elements(self, loc):
-
+        """
+        批量元素定位
+        :param loc: 定位元素方法
+        :return: 元素地址
+        """
         try:
             # 显示等到
-            WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, self.timeout).until(expected_conditions.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
-        except:
+        except TimeoutException:
             logging.error("{}未能找到元素{}".format(self, loc))
 
     def script(self, js_code):
@@ -86,6 +93,7 @@ class BasePage:
         """
         try:
             locator = self.find_element(loc)
+            # 如果为true，则清空输入框
             if clear:
                 locator.clear()
             locator.send_keys(value)
@@ -98,6 +106,7 @@ class BasePage:
         :return:
         """
         try:
+            # 获取需要切换地方
             frame_loc = self.find_element(loc)
             return self.driver.switch_to.frame(frame_loc)
         except NoSuchFrameException as msg:
@@ -106,7 +115,6 @@ class BasePage:
     def switch_windows(self):
         """
         多窗口切换
-        :param loc:
         :return:
         """
         try:
@@ -141,10 +149,12 @@ class BasePage:
         """
         return self.driver.current_url
 
-    def get_loc_text(self, loc):
+    @staticmethod
+    def get_loc_text(loc):
         """
         获取当前定位loc的文本性质
         :param loc:
         :return:
         """
+        warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)
         return loc.text
