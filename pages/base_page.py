@@ -34,7 +34,7 @@ class BasePage:
         :param sleep_time: 等待时间，默认2秒
         :return:
         """
-        # 添加删除标记
+        # 添加删除标记 todo
         warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)
         sleep(sleep_time)
         self.driver.quit()
@@ -156,6 +156,7 @@ class BasePage:
         :param loc:
         :return:
         """
+        # 添加删除标记 todo
         warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)
         return loc.text
 

@@ -32,7 +32,6 @@ class TestBasePage(MyPyTest):
         """
         self.bp.sleeping()
 
-
     def test_find_element(self):
         self.bp.find_element((By.ID, 'kw')).send_keys("sddd")
         sleep(1)

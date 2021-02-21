@@ -13,8 +13,8 @@ options.add_experimental_option("excludeSwitches", ['enable-automation'])
 # 设置为无页面启动
 options.headless = True
 # 添加登录信息, path配置信息路径
-path = 'D://softwarre/beta/test/selenium/chrome_temp'
-options.add_argument('--user-data-dir=' + path)
+# path = 'D://softwarre/beta/test/selenium/chrome_temp'
+# options.add_argument('--user-data-dir=' + path)
 #新建浏览器配置信息
 # chrome.exe --remote-debugging-port=9222 --user-data-dir="D:\softwarre\beta\test\selenium\chrome_temp"
 
