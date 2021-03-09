@@ -23,6 +23,8 @@ class NewsPage(BasePage):
         跳转到news页面
         :return:
         """
+        import warnings
+        warnings.warn("该方法不再维护", DeprecationWarning)
         dig_news_loc = (By.LINK_TEXT, '新闻')
         self.find_element(dig_news_loc).click()
 

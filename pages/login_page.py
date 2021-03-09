@@ -3,12 +3,10 @@
 # @Author  : Yuanxuan
 # @FileName: login_page.py
 # @Software: PyCharm
-from selenium.webdriver.common.by import By
 import allure
+from selenium.webdriver.common.by import By
 
 from pages import BasePage
-from utils import GetYaml
-import config
 
 
 class LoginPage(BasePage):
