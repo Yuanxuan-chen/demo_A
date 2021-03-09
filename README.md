@@ -14,7 +14,3 @@
     * run_start.py 测试用例启动器
 * utils 公用工具类
 * yaml.test_data 测试用例数据
-
-### 待学习
-* https://www.cnblogs.com/poloyy/category/1690628.html
-* 15、16
