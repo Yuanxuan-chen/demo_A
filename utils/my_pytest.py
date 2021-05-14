@@ -11,7 +11,7 @@ options = webdriver.ChromeOptions()
 # 添加参数进行去除浏览器检测框: Chrome正在受到自动测试软件的控制
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
 # 设置为无页面启动
-options.headless = True
+# options.headless = True
 # 添加登录信息, path配置信息路径
 # path = 'D://softwarre/beta/test/selenium/chrome_temp'
 # options.add_argument('--user-data-dir=' + path)

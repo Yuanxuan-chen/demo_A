@@ -47,9 +47,10 @@ class BasePage:
         """
         try:
             # 隐式等待
-            #   self.driver.implicitly_wait(10)
+            # self.driver.implicitly_wait(self.timeout)
             # 显示等待
-            WebDriverWait(self.driver, self.timeout).until(expected_conditions.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, self.timeout).\
+                until(expected_conditions.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except TimeoutException:
             logging.error("{}未能找到元属{}".format(self, loc))
@@ -62,7 +63,8 @@ class BasePage:
         """
         try:
             # 显示等到
-            WebDriverWait(self.driver, self.timeout).until(expected_conditions.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, self.timeout).\
+                until(expected_conditions.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except TimeoutException:
             logging.error("{}未能找到元素{}".format(self, loc))

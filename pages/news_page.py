@@ -7,6 +7,7 @@ import allure
 from selenium.webdriver.common.by import By
 
 from pages import BasePage
+from UI import NewsUI
 
 
 class NewsPage(BasePage):
@@ -42,8 +43,8 @@ class NewsPage(BasePage):
         /html/body/div/div[4]/div[2]/div/div/ul[2]/li[15]/div/h3/a
         :return:
         """
-        switch_news_loc = (By.XPATH, '/html/body/div/div[4]/div[2]/div/div/ul[1]/li[' + str(index) + ']/div/h3/a')
-        loc = self.find_element(switch_news_loc)
+        # switch_news_loc = (By.XPATH, '/html/body/div/div[4]/div[2]/div/div/ul[1]/li[' + str(index) + ']/div/h3/a')
+        loc = self.find_element(NewsUI.switch_news_loc)
         text = self.get_loc_text(loc)
         loc.click()
         # self.find_element(switch_news_loc).click()
@@ -70,12 +71,12 @@ class NewsPage(BasePage):
         """
 
         # 转入评论输入框的frame
-        frame_loc = (By.ID, 'commentIframe')
-        self.switch_frame(frame_loc)
+        # frame_loc = (By.ID, 'commentIframe')
+        self.switch_frame(NewsUI.frame_loc)
 
         # 评论框输入数据
-        input_loc = (By.ID, 'J_Textarea')
-        self.send_key(input_loc, text)
+        # input_loc = (By.ID, 'J_Textarea')
+        self.send_key(NewsUI.input_loc, text)
 
         # 点击确定按钮
         # 。。。。

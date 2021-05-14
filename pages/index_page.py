@@ -7,6 +7,7 @@ import allure
 from selenium.webdriver.common.by import By
 
 from pages import BasePage
+from UI import IndexUI
 
 
 class IndexPage(BasePage):
@@ -24,8 +25,8 @@ class IndexPage(BasePage):
         :return:
         """
         #导航栏元素定位
-        navigate_loc = (By.LINK_TEXT, navi)
-        self.find_element(navigate_loc).click()
+        # navigate_loc = (By.LINK_TEXT, navi)
+        self.find_element(IndexUI.navigate_loc(navi)).click()
 
         # 跳转窗口
         self.switch_windows()
