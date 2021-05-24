@@ -3,6 +3,8 @@
 # @Author  : Yuanxuan
 # @FileName: test_index_page.py
 # @Software: PyCharm
+import allure
+
 from utils import MyPyTest
 from utils import GetYaml
 from pages import IndexPage
@@ -10,7 +12,8 @@ import config
 
 import pytest
 
-
+@allure.epic("首页")
+@allure.feature("导航栏")
 class TestIndexPage(MyPyTest):
     """
     主页测试类
@@ -31,12 +34,15 @@ class TestIndexPage(MyPyTest):
         :param data:
         :return:
         """
-        # 导航栏选择
-        self.ip.navigate_main(data)
-        # 获取当前页面的标题
-        text = self.ip.get_title()
-        # 断言data的数据在text里
+        with allure.step("导航栏选择"):
+            self.ip.navigate_main(data)
+            self.ip.sleeping()
+            # 获取当前页面的标题
+            text = self.ip.get_title()
+            # 断言data的数据在text里
         assert data in text
 
 
+if __name__ == '__main__':
+    pytest.main()
 

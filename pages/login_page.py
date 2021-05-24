@@ -4,7 +4,6 @@
 # @FileName: login_page.py
 # @Software: PyCharm
 import allure
-from selenium.webdriver.common.by import By
 
 from pages import BasePage
 from UI import LoginUI
@@ -16,41 +15,35 @@ class LoginPage(BasePage):
     """
     def __init__(self, driver, url):
         super().__init__(driver, url)
-        # self.elements = GetYaml(config.ELEMENT_PATH + '\\' + 'login_page.yaml')
 
     @allure.step("跳转到登录，进入账号密码登录页面")
-    def dig_login(self):
+    def dig_login_page(self):
         """
         首页登录，弹出登录框
         :return:
         """
         # 点击首页登录按钮
-        # dig_login_button_loc = (By.CLASS_NAME, 'l-login')
-        self.find_element(LoginUI.dig_login_button_loc1).click()
+        self.find_element(LoginUI.home_page_login_button_loc).click()
         # 切换表单
-        # dig_login_button_loc = (By.ID, 'ptlogin_iframe')
-        self.switch_frame(LoginUI.dig_login_button_loc2)
+        self.switch_frame(LoginUI.switch_frame_loc)
         # 切换到账号密码登录方式
-        # dig_login_button_loc = (By.LINK_TEXT, '帐号密码登录')
-        self.find_element(LoginUI.dig_login_button_loc3).click()
+        self.find_element(LoginUI.switch_user_password_login_loc).click()
 
     @allure.step("输入账号")
     def login_username(self, username):
         """
-        登录账号
+        账号输入框
         :param username:
         :return:
         """
-        # login_phone_loc = (By.ID, 'u')
         self.send_key(LoginUI.login_phone_loc, username)
 
     @allure.step("输入密码")
     def login_password(self, pwd):
         """
-        登录密码
+        密码输入框
         :return:pwd
         """
-        # login_pwd_loc = (By.ID, 'p')
         self.send_key(LoginUI.login_pwd_loc, pwd)
 
     @allure.step("点击登录按钮")
@@ -59,8 +52,7 @@ class LoginPage(BasePage):
         登录按钮
         :return:
         """
-        # login_loc = (By.ID, 'login_button')
-        self.find_element(LoginUI.login_loc).click()
+        self.find_element(LoginUI.login_button_loc).click()
 
     @allure.step("校验验证信息是否正确")
     def login_check_info(self):
@@ -69,6 +61,5 @@ class LoginPage(BasePage):
         :return:
         """
         # 提示完文字的loc
-        # check_loc = (By.ID, 'err_m')
         text = self.find_element(LoginUI.check_loc)
         return self.get_loc_text(text)

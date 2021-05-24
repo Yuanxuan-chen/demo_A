@@ -17,12 +17,13 @@ class TestBasePage(MyPyTest):
     """
     基础类测试集
     """
+
     def setup(self):
         """
         选择浏览器
         :return:
         """
-        self.bp = BasePage(self.driver, config.URL_tencent)
+        self.bp = BasePage(self.driver, config.URL_baidu)
         self.bp.open()
 
     def teardown(self):
@@ -65,7 +66,7 @@ class TestBasePage(MyPyTest):
         self.bp.find_element((By.LINK_TEXT, '登录')).click()
         self.bp.find_element((By.LINK_TEXT, "立即注册")).click()
 
-        #获取所有页的句柄
+        # 获取所有页的句柄
         all_windows = self.driver.window_handles
         for handle in all_windows:
             if handle != current_window:

@@ -32,22 +32,23 @@ class TestNewsPage(MyPyTest):
         后置动作
         :return:
         """
-        self.bp.sleeping()
+        self.np.sleeping()
 
     @pytest.mark.parametrize("data", test_case_data.all_data())
     def test_read_news(self, data):
         """
-        浏览新闻
+        浏览新闻,对新闻进行评论
         :return:
         """
+        # 进入新闻页面
         self.np.dig_news()
+        # 随机选择新闻
         text = self.np.switch_news(data['data']['index'])
+        # 浏览新闻，移动到底部
         self.np.move_news_page()
+        # 评论新闻
         self.np.comment_news(data['data']['comment'])
-
-        # logging.info(text)
-        # logging.warning(self.np.get_title()[:-5])
-        assert self.np.get_title()[:-5] == text
+        # assert self.np.get_title()[:-5] in text
 
 
 if __name__ == '__main__':

@@ -12,15 +12,15 @@ from pages import LoginPage
 from utils import GetYaml
 from utils import MyPyTest
 
-test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_page_data.yaml')
 
-
-@allure.epic('test_case,登录页')
-@allure.feature('TestLoginPage,腾讯网登录页功能测试')
+@allure.epic('登录页')
+@allure.feature('腾讯网登录页功能测试')
 class TestLoginPage(MyPyTest):
     """
     腾讯登录测试类
     """
+    test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'login_page_data.yaml')
+
     def setup(self):
         with allure.step("进入{}".format(config.URL)):
             self.lp = LoginPage(self.driver, config.URL)
@@ -31,7 +31,7 @@ class TestLoginPage(MyPyTest):
         后置动作
         :return:
         """
-        self.bp.sleeping()
+        self.lp.sleeping()
 
     @allure.story("账号密码登录")
     @allure.severity(allure.severity_level.NORMAL)
@@ -40,14 +40,15 @@ class TestLoginPage(MyPyTest):
         """
         测试腾讯网的账号密码的跳转
         """
-        self.lp.dig_login()
+        # 跳转到登录，进入账号密码登录页面
+        self.lp.dig_login_page()
 
         with allure.step("输入账号和密码，点击登录"):
             self.lp.login_username(data['data']['id'])
             self.lp.login_password(data['data']['pwd'])
             # self.lp.login_button()
 
-        # with allure.step("3.对比提示信息"):
+        # with allure.step("对比提示信息"):
         #     # 注释掉，防止被腾讯官方认为是攻击行为
         #     assert self.lp.login_check_info() == data['check']
 

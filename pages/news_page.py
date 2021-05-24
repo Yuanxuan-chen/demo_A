@@ -25,7 +25,7 @@ class NewsPage(BasePage):
         :return:
         """
         import warnings
-        warnings.warn("该方法不再维护", DeprecationWarning)
+        # warnings.warn("该方法不再维护", DeprecationWarning)
         dig_news_loc = (By.LINK_TEXT, '新闻')
         self.find_element(dig_news_loc).click()
 
@@ -36,16 +36,9 @@ class NewsPage(BasePage):
     def switch_news(self, index):
         """
         选择新闻
-
-        /html/body/div/div[4]/div[2]/div/div/ul[1]/li[1]/div/h3/a
-        /html/body/div/div[4]/div[2]/div/div/ul[1]/li[2]/div/h3/a[2]
-        /html/body/div/div[4]/div[2]/div/div/ul[2]/li[2]/div/h3/a
-        /html/body/div/div[4]/div[2]/div/div/ul[2]/li[15]/div/h3/a
-        :return:
         """
-        # switch_news_loc = (By.XPATH, '/html/body/div/div[4]/div[2]/div/div/ul[1]/li[' + str(index) + ']/div/h3/a')
-        loc = self.find_element(NewsUI.switch_news_loc)
-        text = self.get_loc_text(loc)
+        loc = self.find_element(NewsUI.switch_news_loc(index))
+        text = loc.text
         loc.click()
         # self.find_element(switch_news_loc).click()
 
