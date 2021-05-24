@@ -40,6 +40,7 @@ class CommentPage(BasePage):
         ele = self.find_element(CommentUI.nums_comment_loc)
         return ele.text
 
+    @allure.step("浏览评论信息")
     def list_comment(self):
         """
         获取所有评论信息
@@ -57,7 +58,8 @@ class CommentPage(BasePage):
         """
         return self.find_elements(CommentUI.delete_comment_loc)
 
-    def dig_delete_button_enter_or_cancel(self, loc, enter_or_cancel=1):
+    @allure.step('点击删除按钮')
+    def dig_delete_button(self, data, loc):
         """
         点击选择的删除按钮
         :param loc:
@@ -65,10 +67,11 @@ class CommentPage(BasePage):
         """
         # 点击删除
         loc.click()
+
+    @allure.step('选择是否确认删除')
+    def delete_enter_or_cancel(self, enter_or_cancel=2):
         # 点击确认删除
         if enter_or_cancel == 1:
             self.find_element(CommentUI.delete_enter_loc).click()
         elif enter_or_cancel == 2:
             self.find_element(CommentUI.delete_cancel_loc).click()
-
-

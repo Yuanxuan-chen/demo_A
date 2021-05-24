@@ -4,7 +4,6 @@
 # @FileName: test_comment_page.py
 # @Software: PyCharm
 import allure
-from utils import GetYaml
 import pytest
 import config
 import logging
@@ -13,7 +12,6 @@ from utils import MyPyTest_user
 
 
 @allure.epic('评论管理')
-@allure.feature("浏览新闻")
 class TestCommentPage(MyPyTest_user):
     """
     评论管理页测试类
@@ -47,20 +45,33 @@ class TestCommentPage(MyPyTest_user):
         # 对比信息是否一致
         assert num1 == num2
 
-    delete_comment_data = ['1', '2', '3']
+    delete_comment_data = [
+        ['1', '1', '信息不存在'],
+        ['2', '2', '信息存在，确认删除'],
+        ['3', '2', '信息存在，取消删除']
+    ]
 
     @allure.story("评论删除")
     @allure.severity(allure.severity_level.NORMAL)
-    @pytest.mark.parametrize("data", delete_comment_data)
-    def test_delete_comment(self, data):
+    @pytest.mark.parametrize("data, enter_or_cancel, info", delete_comment_data)
+    def test_delete_comment(self, data, enter_or_cancel, info):
+        """
+        评论删除
+        :param data: 选择的新闻
+        :param enter_or_cancel: 是否确认删除，1是，2否
+        :return:
+        """
         # 跳转到评论管理页面
         self.cp.dig_comment_page()
         self.cp.comment_switch_frame()
         # 获取所有评论信息
         comment = self.cp.list_comment()
         # 判断是否有评论，并且想要删除的评论是否存在
-        if comment and data in comment:
-            # 定位想要删除的评论
-            delete_loc = self.cp.list_delete_button()[comment.index(data)]
-            # 点击删除
-            self.cp.dig_delete_button_enter_or_cancel(delete_loc, 2)
+        with allure.step('判断评论是否存在？'):
+            if comment and data in comment:
+                # 定位想要删除的评论
+                delete_loc = self.cp.list_delete_button()[comment.index(data)]
+                # 点击删除
+                self.cp.dig_delete_button(data, delete_loc)
+                # 是否确认删除
+                self.cp.delete_enter_or_cancel(enter_or_cancel)
