@@ -6,3 +6,4 @@
 from .news_ui import NewsUI
 from .index_ui import IndexUI
 from .login_ui import LoginUI
+from .comment_ui import CommentUI

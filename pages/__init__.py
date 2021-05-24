@@ -3,7 +3,8 @@
 # @Author  : Yuanxuan
 # @FileName: run_start.py
 # @Software: PyCharm
-from pages.base_page import BasePage
-from pages.login_page import LoginPage
-from pages.news_page import NewsPage
-from pages.index_page import IndexPage
+from .base_page import BasePage
+from .login_page import LoginPage
+from .news_page import NewsPage
+from .index_page import IndexPage
+from .comment_page import CommentPage
