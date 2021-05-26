@@ -1,26 +1,31 @@
 # 新闻页测试数据
 -
-  detail: 浏览网页1
+  detail: 已登录是否能够评论成功
   data:
     index: 1
-    comment: 浏览网页1
-
-- detail: 浏览网页2
+    comment: 1
+-
+  detail: 是否能够对已经评论的新闻评论重复的内容
+  data:
+    index: 1
+    comment: 1
+-
+  detail: 是否能够对未评论的新闻评论重复的内容
+  data:
+    index: 1
+    comment: 1
+-
+  detail: 已登录的情况下，空数据是否能够评论成功
+  data:
+    index: 1
+    comment: ""
+-
+  detail: 是否可以输入超长的评论信息
   data:
     index: 2
-    comment: 浏览网页2
-
-- detail: 浏览网页3
+    comment: 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+-
+  detail: 任何字符是否都能够评论成功
   data:
-    index: 3
-    comment: 浏览网页3
-
-- detail: 浏览网页4
-  data:
-    index: 4
-    comment: 浏览网页4
-
-- detail: 浏览网页5
-  data:
-    index: 5
-    comment: 浏览网页5
+    index: 1
+    comment: Asdasdasd123123.。、，、。，、。，《》《》《：“：”；

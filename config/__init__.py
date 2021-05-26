@@ -38,7 +38,7 @@ def sleeping(t=1):
     """
     全局等待函数
     """
-    # 添加删除标记 todo
+    # 添加删除标记
     # sdfsfsdf
     import warnings
     warnings.warn("该方法不再维护", DeprecationWarning, stacklevel=2)

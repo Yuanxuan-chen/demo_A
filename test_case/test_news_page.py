@@ -106,6 +106,28 @@ class TestNewsPage_no_user(MyPyTest):
         """
         self.np.sleeping()
 
+
+    like_comment_data = [
+        '未登录的情况下，是否可以进入评论管理界面',
+    ]
+
+    @allure.story("浏览评论并赞")
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.parametrize("data", like_comment_data)
+    def test_like_comment(self, data):
+        """
+        浏览评论并赞
+        :param data:
+        :return:
+        """
+        self.np.dig_news()
+        self.np.switch_news(1)
+        # 进入所有评论页面
+        self.np.dig_news_comment()
+        text = self.np.get_title()
+        assert text == '评论'
+
+
     list_comment = [
         ['未登录是否能够评论成功', '1', 'sadsadasd'],
     ]
@@ -129,27 +151,6 @@ class TestNewsPage_no_user(MyPyTest):
         self.np.submit_comment_no_user()
         text = self.np.get_title()
         assert text == 'QQ帐号安全登录'
-
-    like_comment_data = [
-        '未登录的情况下，是否可以进入评论管理界面',
-    ]
-
-    @allure.story("浏览评论并赞")
-    @allure.severity(allure.severity_level.NORMAL)
-    @pytest.mark.parametrize("data", like_comment_data)
-    def test_like_comment(self, data):
-        """
-        浏览评论并赞
-        :param data:
-        :return:
-        """
-        self.np.dig_news()
-        self.np.switch_news(1)
-        # 进入所有评论页面
-        self.np.dig_news_comment()
-        text = self.np.get_title()
-        assert text == '评论'
-
 
 if __name__ == '__main__':
     pytest.main()

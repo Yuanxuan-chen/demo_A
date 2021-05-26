@@ -46,10 +46,9 @@ class TestLoginPage(MyPyTest):
         with allure.step("输入账号和密码，点击登录"):
             self.lp.login_username(data['data']['id'])
             self.lp.login_password(data['data']['pwd'])
-            # self.lp.login_button()
-
+        #     self.lp.login_button()
+        #
         # with allure.step("对比提示信息"):
-        #     # 注释掉，防止被腾讯官方认为是攻击行为
         #     assert self.lp.login_check_info() == data['check']
 
 

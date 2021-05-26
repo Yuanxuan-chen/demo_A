@@ -4,7 +4,6 @@
 # @FileName: index_page.py
 # @Software: PyCharm
 import allure
-from selenium.webdriver.common.by import By
 
 from pages import BasePage
 from UI import IndexUI
@@ -21,11 +20,10 @@ class IndexPage(BasePage):
     @allure.step("导航栏选择")
     def navigate_main(self, navi):
         """
-        主导航栏
+        主页导航栏
         :return:
         """
         #导航栏元素定位
-        # navigate_loc = (By.LINK_TEXT, navi)
         self.find_element(IndexUI.navigate_loc(navi)).click()
 
         # 跳转窗口

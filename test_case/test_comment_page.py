@@ -27,14 +27,18 @@ class TestCommentPage(MyPyTest_user):
     list_comment_data = [
         '已登录的情况下，是否可以进入评论管理界面',
         '未登录的情况下，是否可以进入评论管理界面',
+        '是否可以进入查看所有的评论',
     ]
 
     @allure.story("评论浏览，评论查看")
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.parametrize("data", list_comment_data)
     def test_list_comment(self, data):
-        # 跳转到评论管理页面
-        pass
+        """
+        评论浏览，评论查看
+        :param data:
+        :return:
+        """
         self.cp.dig_comment_page()
         self.cp.comment_switch_frame()
         num1 = int(self.cp.nums_comment())
@@ -46,15 +50,16 @@ class TestCommentPage(MyPyTest_user):
         assert num1 == num2
 
     delete_comment_data = [
-        ['1', '1', '信息不存在'],
-        ['2', '2', '信息存在，确认删除'],
-        ['3', '2', '信息存在，取消删除']
+        ['信息不存在', '2', '1'],
+        ['信息存在，确认删除', 'Asdasdasd123123.。、，、。，、。，《》《》《：“：”；', '1'],
+        ['信息存在，确认删除', '11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', '1'],
+        ['信息存在，取消删除', '1', '0']
     ]
 
     @allure.story("评论删除")
     @allure.severity(allure.severity_level.NORMAL)
-    @pytest.mark.parametrize("data, enter_or_cancel, info", delete_comment_data)
-    def test_delete_comment(self, data, enter_or_cancel, info):
+    @pytest.mark.parametrize("info, data, enter_or_cancel", delete_comment_data)
+    def test_delete_comment(self, info, data, enter_or_cancel):
         """
         评论删除
         :param data: 选择的新闻
