@@ -64,11 +64,9 @@ class NewsPage(BasePage):
         """
 
         # 转入评论输入框的frame
-        # frame_loc = (By.ID, 'commentIframe')
         self.switch_frame(NewsUI.news_page_frame_loc)
 
         # 评论框输入数据
-        # input_loc = (By.ID, 'J_Textarea')
         self.send_key(NewsUI.input_loc, text)
 
     @allure.step('点击发布评论按钮')
@@ -115,4 +113,10 @@ class NewsPage(BasePage):
         :return:
         """
         loc.click()
+
+    @allure.step('未登录时，发布按钮变成登录按钮')
+    def submit_comment_no_user(self):
+        # 点击确定按钮
+        # 。。。。
+        self.find_element(NewsUI.submit_comment_no_user_loc).click()
 

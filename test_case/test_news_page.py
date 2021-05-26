@@ -16,7 +16,7 @@ test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'news_page_data.yaml')
 
 
 @allure.epic("新闻页")
-@allure.feature("浏览新闻,并评论")
+@allure.feature("已登录，浏览新闻,并评论")
 class TestNewsPage(MyPyTest_user):
     """
     新闻页测试类
@@ -85,9 +85,49 @@ class TestNewsPage(MyPyTest_user):
                 like_button_loc = self.np.list_like_button()[1]
                 # 点击点赞按钮
                 self.np.dig_like_button(like_button_loc)
-                self.np.sleeping(10)
 
 
+@allure.feature("未登录，浏览新闻,并评论")
+class TestNewsPage_no_user(MyPyTest):
+    """
+    新闻页测试类
+    """
+
+    def setup(self):
+        with allure.step("进入{}".format(config.URL)):
+            self.np = NewsPage(self.driver, config.URL)
+            self.np.open()
+
+    def teardown(self):
+        """
+        后置动作
+        :return:
+        """
+        self.np.sleeping()
+
+    list_comment = [
+        ['未登录是否能够评论成功', '1', 'sadsadasd'],
+    ]
+
+    @allure.story("评论新闻，添加评论")
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.parametrize("info, index, data", list_comment)
+    def test_read_news(self, info, index, data):
+        """
+        浏览新闻,对新闻进行评论
+        :return:
+        """
+        # 进入新闻页面
+        self.np.dig_news()
+        # 随机选择新闻
+        text = self.np.switch_news(index)
+        # 浏览新闻，移动到底部
+        self.np.move_news_page()
+        # 评论新闻
+        self.np.comment_news(data)
+        self.np.submit_comment_no_user()
+        text = self.np.get_title()
+        assert text == 'QQ帐号安全登录'
 
 if __name__ == '__main__':
     pytest.main()

@@ -36,3 +36,6 @@ class NewsUI:
 
     # 获取当前页所有的点赞按钮
     list_like_button_loc = (By.CLASS_NAME, 'J_Vote.comment-operate-item.comment-operate-up')
+
+    # 评论发表按钮
+    submit_comment_no_user_loc = (By.CLASS_NAME, 'box-loginBtn.J_PostBtn')
