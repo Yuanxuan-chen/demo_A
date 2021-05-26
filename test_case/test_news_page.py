@@ -16,7 +16,7 @@ test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'news_page_data.yaml')
 
 
 @allure.epic("新闻页")
-@allure.feature("已登录，浏览新闻,并评论")
+@allure.feature("已登录，浏览新闻")
 class TestNewsPage(MyPyTest_user):
     """
     新闻页测试类
@@ -62,7 +62,7 @@ class TestNewsPage(MyPyTest_user):
         '是否可以重复点赞',
     ]
 
-    @allure.story("浏览评论并赞")
+    @allure.story("浏览评论并点赞")
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.parametrize("data", like_comment_data)
     def test_like_comment(self, data):
@@ -87,7 +87,8 @@ class TestNewsPage(MyPyTest_user):
                 self.np.dig_like_button(like_button_loc)
 
 
-@allure.feature("未登录，浏览新闻,并评论")
+@allure.epic("新闻页")
+@allure.feature("未登录，浏览新闻")
 class TestNewsPage_no_user(MyPyTest):
     """
     新闻页测试类
@@ -128,6 +129,27 @@ class TestNewsPage_no_user(MyPyTest):
         self.np.submit_comment_no_user()
         text = self.np.get_title()
         assert text == 'QQ帐号安全登录'
+
+    like_comment_data = [
+        '未登录的情况下，是否可以进入评论管理界面',
+    ]
+
+    @allure.story("浏览评论并赞")
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.parametrize("data", like_comment_data)
+    def test_like_comment(self, data):
+        """
+        浏览评论并赞
+        :param data:
+        :return:
+        """
+        self.np.dig_news()
+        self.np.switch_news(1)
+        # 进入所有评论页面
+        self.np.dig_news_comment()
+        text = self.np.get_title()
+        assert text == '评论'
+
 
 if __name__ == '__main__':
     pytest.main()
