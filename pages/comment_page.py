@@ -67,11 +67,20 @@ class CommentPage(BasePage):
         """
         # 点击删除
         loc.click()
+        # self.find_element(CommentUI.delete_enter_loc).click()
 
     @allure.step('选择是否确认删除')
-    def delete_enter_or_cancel(self, enter_or_cancel=2):
+    def delete_enter_or_cancel(self, enter_or_cancel):
         # 点击确认删除
-        if enter_or_cancel == 1:
+        if enter_or_cancel == '1':
             self.find_element(CommentUI.delete_enter_loc).click()
-        elif enter_or_cancel == 2:
+        elif enter_or_cancel == '2':
             self.find_element(CommentUI.delete_cancel_loc).click()
+
+    @allure.step('点赞')
+    def dig_like(self, loc):
+        pass
+
+    @allure.step('检查点赞数')
+    def check_like_nums(self, loc):
+        pass

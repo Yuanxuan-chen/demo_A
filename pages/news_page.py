@@ -65,11 +65,54 @@ class NewsPage(BasePage):
 
         # 转入评论输入框的frame
         # frame_loc = (By.ID, 'commentIframe')
-        self.switch_frame(NewsUI.frame_loc)
+        self.switch_frame(NewsUI.news_page_frame_loc)
 
         # 评论框输入数据
         # input_loc = (By.ID, 'J_Textarea')
         self.send_key(NewsUI.input_loc, text)
 
+    @allure.step('点击发布评论按钮')
+    def submit_comment(self):
         # 点击确定按钮
         # 。。。。
+        self.find_element(NewsUI.submit_comment_button_loc).click()
+
+
+    @allure.step('进入所有评论页面')
+    def dig_news_comment(self):
+        self.find_element(NewsUI.news_comment_loc).click()
+        self.switch_windows()
+
+    def comment_page_switch_frame(self):
+        self.switch_frame(NewsUI.commnet_page_frame_loc)
+
+    @allure.step("浏览评论信息")
+    def list_comment(self):
+        """
+        获取所有评论信息
+        :return:
+        """
+        ele = self.find_elements(NewsUI.list_comment_loc)
+        if not ele:
+            return []
+        return [ele.text for ele in ele]
+
+    def list_like_button(self):
+        """
+        获取所有点赞按钮
+        :return:
+        """
+        ele = self.find_elements(NewsUI.list_like_button_loc)
+        if not ele:
+            return []
+        return ele
+
+    @allure.step("点击点赞按钮")
+    def dig_like_button(self, loc):
+        """
+        点击点赞按钮
+        :param loc:
+        :return:
+        """
+        loc.click()
+

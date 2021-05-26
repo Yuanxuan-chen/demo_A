@@ -3,7 +3,7 @@
 # @Author  : Yuanxuan
 # @FileName: test_news_page.py
 # @Software: PyCharm
-from utils import MyPyTest
+from utils import MyPyTest, MyPyTest_user
 from pages import NewsPage
 import config
 from utils import GetYaml
@@ -16,8 +16,8 @@ test_case_data = GetYaml(config.TEST_DATA_PATH + '\\' + 'news_page_data.yaml')
 
 
 @allure.epic("新闻页")
-@allure.feature("浏览新闻")
-class TestNewsPage(MyPyTest):
+@allure.feature("浏览新闻,并评论")
+class TestNewsPage(MyPyTest_user):
     """
     新闻页测试类
     """
@@ -34,6 +34,8 @@ class TestNewsPage(MyPyTest):
         """
         self.np.sleeping()
 
+    @allure.story("评论新闻，添加评论")
+    @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.parametrize("data", test_case_data.all_data())
     def test_read_news(self, data):
         """
@@ -49,6 +51,42 @@ class TestNewsPage(MyPyTest):
         # 评论新闻
         self.np.comment_news(data['data']['comment'])
         # assert self.np.get_title()[:-5] in text
+        self.np.submit_comment()
+
+    like_comment_data = [
+        '已登录的情况下，是否可以进入评论管理界面',
+        '未登录的情况下，是否可以进入评论管理界面',
+        '是否可以进入查看所有的评论',
+        '是否可以点赞别人的评论',
+        '是否可以点赞自己的评论',
+        '是否可以重复点赞',
+    ]
+
+    @allure.story("浏览评论并赞")
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.parametrize("data", like_comment_data)
+    def test_like_comment(self, data):
+        """
+        浏览评论并赞
+        :param data:
+        :return:
+        """
+        self.np.dig_news()
+        self.np.switch_news(1)
+        # 进入所有评论页面
+        self.np.dig_news_comment()
+        self.np.comment_page_switch_frame()
+        # 获取所有评论信息
+        comment = self.np.list_comment()
+        logging.info(comment)
+        with allure.step('判断评论是否存在？'):
+            if comment:
+                # 获取所有点赞按钮
+                like_button_loc = self.np.list_like_button()[1]
+                # 点击点赞按钮
+                self.np.dig_like_button(like_button_loc)
+                self.np.sleeping(10)
+
 
 
 if __name__ == '__main__':
